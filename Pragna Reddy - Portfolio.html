@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pragna Reddy — Fashion Design Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Archivo:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<script src="image-slot.js"></script>
+<style>
+  :root{
+    --bg:#0d0b0a;
+    --bg2:#15110f;
+    --bone:#ece5d8;
+    --bone-dim:rgba(236,229,216,.52);
+    --bone-faint:rgba(236,229,216,.16);
+    --acid:#c8f24a;
+    --line:rgba(236,229,216,.13);
+    --serif:"Bodoni Moda",serif;
+    --mono:"Space Mono",monospace;
+    --sans:"Archivo",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--bone);
+    font-family:var(--sans);
+    overflow-x:hidden;
+    cursor:none;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (hover:none){ body{cursor:auto} }
+  ::selection{background:var(--acid);color:#0d0b0a}
+  a{color:inherit;text-decoration:none}
+
+  /* ---------- grain ---------- */
+  .grain{
+    position:fixed;inset:-50%;width:200%;height:200%;
+    pointer-events:none;z-index:9000;opacity:.05;mix-blend-mode:screen;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    animation:grain 6s steps(5) infinite;
+  }
+  @keyframes grain{
+    0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}
+    60%{transform:translate(-3%,4%)}80%{transform:translate(4%,-2%)}100%{transform:translate(0,0)}
+  }
+
+  /* ---------- cursor ---------- */
+  .cur,.cur-dot{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;border-radius:50%;mix-blend-mode:difference}
+  .cur{width:38px;height:38px;border:1px solid var(--bone);transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s,border-color .3s}
+  .cur-dot{width:5px;height:5px;background:var(--bone);transform:translate(-50%,-50%)}
+  .cur.grow{width:84px;height:84px;background:var(--bone);border-color:transparent;mix-blend-mode:difference}
+  @media (hover:none){.cur,.cur-dot{display:none}}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed;top:0;left:0;width:100%;z-index:8000;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:26px clamp(20px,4vw,56px);
+    mix-blend-mode:difference;
+  }
+  .brand{font-family:var(--serif);font-weight:600;font-size:21px;letter-spacing:.02em}
+  .brand i{font-style:italic;color:var(--acid)}
+  .nav-links{display:flex;gap:clamp(18px,3vw,40px);font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+  .nav-links a{position:relative;padding:4px 0;opacity:.8;transition:opacity .3s}
+  .nav-links a:hover{opacity:1}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--bone);transition:width .35s}
+  .nav-links a:hover::after{width:100%}
+  .nav-links a.idx{color:var(--acid)}
+  @media (max-width:640px){.nav-links a:not(.idx){display:none}}
+
+  section{position:relative}
+  .wrap{padding:0 clamp(20px,4vw,56px)}
+
+  /* ---------- HERO ---------- */
+  #hero{height:100vh;min-height:680px;display:flex;align-items:center;justify-content:center;overflow:hidden;perspective:1400px}
+  .hero-scene{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+  .hero-img{
+    position:absolute;top:50%;left:50%;width:min(46vh,420px);height:min(64vh,580px);
+    transform:translate(-50%,-50%) translateZ(-220px);
+  }
+  .hero-img image-slot{width:100%;height:100%;display:block;filter:grayscale(.25) contrast(1.05)}
+  .hero-meta{position:absolute;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-dim)}
+  .hm1{top:24%;left:9%}
+  .hm2{bottom:26%;right:9%;text-align:right}
+  .hm3{top:30%;right:11%}
+  .hero-title{position:relative;text-align:center;transform-style:preserve-3d;pointer-events:none;z-index:5}
+  .hero-title .line{
+    display:block;font-family:var(--serif);font-weight:500;line-height:.84;
+    font-size:clamp(58px,17vw,260px);letter-spacing:-.02em;
+    text-transform:uppercase;mix-blend-mode:difference;color:var(--bone);
+  }
+  .hero-title .line.it{font-style:italic;font-weight:400}
+  .hero-title .line .l{display:inline-block;transform:translateZ(0)}
+  .hero-sub{
+    margin-top:clamp(14px,2vw,28px);display:flex;gap:clamp(14px,2vw,30px);justify-content:center;flex-wrap:wrap;
+    font-family:var(--mono);font-size:clamp(10px,1.1vw,13px);letter-spacing:.22em;text-transform:uppercase;
+    mix-blend-mode:difference;
+  }
+  .hero-sub span:nth-child(2){color:var(--acid)}
+  .scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--bone-dim);display:flex;flex-direction:column;align-items:center;gap:10px;z-index:6}
+  .scroll-cue .bar{width:1px;height:42px;background:linear-gradient(var(--bone-dim),transparent);animation:cue 2s ease-in-out infinite}
+  @keyframes cue{0%,100%{transform:scaleY(.4);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;overflow:hidden;white-space:nowrap;background:var(--bg2)}
+  .marquee-track{display:inline-flex;gap:46px;animation:scroll 34s linear infinite;will-change:transform}
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  .marquee-track span{font-family:var(--serif);font-style:italic;font-size:clamp(26px,4vw,52px);font-weight:500;color:var(--bone)}
+  .marquee-track .star{font-style:normal;color:var(--acid);font-family:var(--sans)}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* ---------- section heading ---------- */
+  .shead{display:flex;align-items:baseline;gap:18px;margin-bottom:clamp(36px,5vw,72px)}
+  .shead .num{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--acid)}
+  .shead .lbl{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim)}
+  .shead .rule{flex:1;height:1px;background:var(--line)}
+
+  /* ---------- ABOUT ---------- */
+  #about{padding:clamp(90px,12vw,180px) 0}
+  .about-grid{display:grid;grid-template-columns:1.3fr .9fr;gap:clamp(40px,6vw,90px);align-items:start}
+  @media (max-width:880px){.about-grid{grid-template-columns:1fr}}
+  .about-statement{font-family:var(--serif);font-weight:400;font-size:clamp(28px,4.4vw,62px);line-height:1.08;letter-spacing:-.01em;text-wrap:balance}
+  .about-statement em{font-style:italic;color:var(--acid)}
+  .about-body{margin-top:38px;max-width:46ch;font-size:clamp(15px,1.2vw,17px);line-height:1.7;color:var(--bone-dim)}
+  .about-portrait{position:relative;aspect-ratio:3/4}
+  .about-portrait image-slot,.about-portrait img{width:100%;height:100%;display:block;object-fit:cover;filter:grayscale(.3) contrast(1.05)}
+  .about-portrait .tag{position:absolute;bottom:-14px;left:-14px;background:var(--acid);color:#0d0b0a;font-family:var(--mono);font-size:11px;letter-spacing:.1em;padding:8px 14px}
+  .facts{margin-top:46px;border-top:1px solid var(--line)}
+  .fact{display:flex;justify-content:space-between;gap:20px;padding:18px 0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+  .fact .k{color:var(--bone-dim);text-transform:uppercase;font-size:11px;letter-spacing:.16em}
+  .fact .v{text-align:right}
+
+  /* ---------- GALLERY ---------- */
+  #work{padding:clamp(60px,8vw,120px) 0 clamp(90px,12vw,160px)}
+  .proj{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:center;padding:clamp(50px,8vw,110px) 0;perspective:1300px}
+  .proj:nth-child(even) .proj-media{order:2}
+  @media (max-width:880px){.proj{grid-template-columns:1fr;gap:30px}.proj:nth-child(even) .proj-media{order:0}}
+  .proj-media{position:relative;transform-style:preserve-3d;will-change:transform}
+  .proj-cover{position:relative;display:block;width:100%;aspect-ratio:4/3;overflow:hidden;background:#000;border:1px solid var(--line);cursor:none}
+  .proj-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .5s;filter:contrast(1.03)}
+  .proj-media:hover .proj-cover img{transform:scale(1.04)}
+  .proj-cover .pcount{position:absolute;bottom:12px;right:12px;background:rgba(13,11,10,.78);backdrop-filter:blur(6px);color:var(--bone);font-family:var(--mono);font-size:10px;letter-spacing:.14em;padding:7px 11px;display:flex;align-items:center;gap:7px}
+  .proj-cover .pcount::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--acid)}
+  .proj-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+  .proj-thumb{position:relative;aspect-ratio:1/1;overflow:hidden;background:#000;border:1px solid var(--line);cursor:none}
+  .proj-thumb img{width:100%;height:100%;object-fit:cover;display:block;opacity:.62;transition:opacity .4s,transform .6s}
+  .proj-thumb:hover img{opacity:1;transform:scale(1.07)}
+  .proj-thumb.more::after{content:attr(data-more);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(13,11,10,.72);color:var(--bone);font-family:var(--mono);font-size:13px;letter-spacing:.08em}
+  .proj-media .pnum{position:absolute;top:-30px;left:-6px;font-family:var(--serif);font-style:italic;font-size:clamp(40px,6vw,90px);color:var(--bone-faint);z-index:5;pointer-events:none}
+  .proj-info .ptitle{font-family:var(--serif);font-weight:500;font-size:clamp(40px,6vw,86px);line-height:.92;letter-spacing:-.02em;text-transform:uppercase}
+  .proj-info .ptitle em{font-style:italic;font-weight:400;color:var(--acid)}
+  .proj-info .pyear{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--bone-dim);margin:18px 0 24px;display:flex;gap:18px;align-items:center}
+  .proj-info .pyear .dot{width:5px;height:5px;border-radius:50%;background:var(--acid)}
+  .proj-info .pdesc{max-width:42ch;font-size:clamp(14px,1.1vw,16px);line-height:1.65;color:var(--bone-dim)}
+  .proj-info .ptags{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+  .proj-info .ptags span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);padding:7px 12px;color:var(--bone-dim)}
+
+  /* ---------- CONTACT ---------- */
+  #contact{padding:clamp(90px,13vw,200px) 0 70px;border-top:1px solid var(--line);text-align:center;overflow:hidden}
+  .contact-kicker{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--bone-dim);margin-bottom:30px}
+  .contact-big{font-family:var(--serif);font-weight:500;line-height:.86;text-transform:uppercase;letter-spacing:-.02em}
+  .contact-big a{display:block;font-size:clamp(46px,12vw,180px);transition:color .4s,transform .4s}
+  .contact-big a em{font-style:italic;font-weight:400}
+  .contact-big a:hover{color:var(--acid)}
+  .socials{margin-top:clamp(46px,7vw,90px);display:flex;gap:clamp(20px,4vw,56px);justify-content:center;flex-wrap:wrap;font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+  .socials a{position:relative;opacity:.75;transition:opacity .3s}
+  .socials a:hover{opacity:1;color:var(--acid)}
+  footer{margin-top:clamp(60px,9vw,120px);padding:26px clamp(20px,4vw,56px);border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--bone-dim);text-transform:uppercase}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{position:fixed;inset:0;z-index:9500;background:rgba(8,7,6,.94);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+  .lightbox.open{opacity:1;visibility:visible}
+  .lb-stage{position:relative;max-width:88vw;max-height:80vh;display:flex;align-items:center;justify-content:center;margin:0}
+  .lb-stage img{max-width:88vw;max-height:80vh;object-fit:contain;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  .lb-close{position:absolute;top:24px;right:28px;background:none;border:none;color:var(--bone);font-size:24px;cursor:none;font-family:var(--sans);opacity:.8;transition:opacity .3s,color .3s}
+  .lb-close:hover{opacity:1;color:var(--acid)}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid var(--line);color:var(--bone);width:54px;height:54px;border-radius:50%;font-size:26px;line-height:1;cursor:none;display:flex;align-items:center;justify-content:center;transition:background .3s,color .3s,border-color .3s}
+  .lb-nav:hover{background:var(--bone);color:#0d0b0a;border-color:var(--bone)}
+  .lb-prev{left:clamp(14px,3vw,40px)}
+  .lb-next{right:clamp(14px,3vw,40px)}
+  .lb-meta{position:absolute;bottom:26px;left:0;width:100%;display:flex;justify-content:center;gap:22px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--bone-dim)}
+  .lb-meta #lbTitle{color:var(--bone)}
+  @media (max-width:640px){.lb-nav{width:42px;height:42px;font-size:20px}}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="cur"></div>
+<div class="cur-dot"></div>
+
+<nav>
+  <div class="brand">Pragna <i>Reddy</i></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+    <a class="idx" href="#hero">SS26</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" data-screen-label="Hero">
+  <div class="hero-scene" id="heroScene" style="font-size: 16px">
+    <div class="hero-img" data-depth="0.28">
+      <image-slot id="hero-figure" shape="rect" placeholder="drop campaign image"></image-slot>
+    </div>
+    <div class="hero-meta hm1" data-depth="0.6">B.Des Fashion<br />Pearl Academy</div>
+    <div class="hero-meta hm2" data-depth="0.5">Womenswear · Kidswear<br />Menswear · Leather</div>
+    <div class="hero-meta hm3" data-depth="0.7">Based in<br />Anantapur · IN</div>
+    <div class="hero-title" data-depth="0.12">
+      <span class="line" data-word>PRAGNA</span>
+      <span class="line it" data-word>Reddy</span>
+    </div>
+  </div>
+  <div class="hero-sub">
+    <span>Fashion Designer</span><span>✦</span><span>Pearl Academy · 2022—26</span>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="bar"></span></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Oceanic Design</span><span class="star">✦</span><span>Alder &amp; Ash</span><span class="star">✦</span><span>The Third Sign</span><span class="star">✦</span><span>NU KAWA</span><span class="star">✦</span><span>Wrapora</span><span class="star">✦</span>
+    <span>Oceanic Design</span><span class="star">✦</span><span>Alder &amp; Ash</span><span class="star">✦</span><span>The Third Sign</span><span class="star">✦</span><span>NU KAWA</span><span class="star">✦</span><span>Wrapora</span><span class="star">✦</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="wrap" data-screen-label="About">
+  <div class="shead rv"><span class="num">01</span><span class="lbl">About</span><span class="rule"></span></div>
+  <div class="about-grid">
+    <div>
+      <h2 class="about-statement rv">An aspiring fashion designer integrating <em>merchandising</em> strategy with product development — letting in-depth <em>research</em> guide every creative decision.</h2>
+      <p class="about-body rv">I'm D. Pragna Reddy, a Fashion Design student at Pearl Academy since 2022. My practice moves across kidswear, menswear and leather — from a marine-inspired children's capsule to a quiet-luxury leather house — always beginning with market research and material study before a silhouette takes shape. Most recently I developed recovery wear for Performax as part of a Live Industry Project.</p>
+      <div class="facts rv">
+        <div class="fact"><span class="k">Education</span><span class="v">B.Des Fashion Design — Pearl Academy, 2022–26</span></div>
+        <div class="fact"><span class="k">Focus</span><span class="v">Merchandising · Product Development · Research</span></div>
+        <div class="fact"><span class="k">Experience</span><span class="v">Performax — Live Industry Project, 2025</span></div>
+        <div class="fact"><span class="k">Software</span><span class="v">Procreate · Illustrator · InDesign · Photoshop</span></div>
+        <div class="fact"><span class="k">Based</span><span class="v">Anantapur, India · Available 2026</span></div>
+      </div>
+    </div>
+    <div class="about-portrait rv">
+      <img src="assets/pragna.jpg" alt="Pragna Reddy" />
+      <div class="tag">PR / 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="wrap" data-screen-label="Portfolio">
+  <div class="shead rv"><span class="num">02</span><span class="lbl">Selected Projects</span><span class="rule"></span></div>
+
+  <article class="proj">
+    <div class="proj-media rv" data-tilt data-gallery="oceanic" data-pnum="01"></div>
+    <div class="proj-info rv">
+      <h3 class="ptitle">Oceanic <em>Design</em></h3>
+      <div class="pyear"><span class="dot"></span>2026 · Kidswear Capsule</div>
+      <p class="pdesc">A gender-neutral kids' capsule collection — leaning towards boys' styles — inspired by the beauty, calmness and marine life of the ocean. Graphic prints and water-mimicking textures meet functional details: comfortable hoods, raglan sleeves and flexible cuffs, built for active children aged 4–8 where comfort, ease of movement and durability are paramount.</p>
+      <div class="ptags"><span>Spring / Summer 26</span><span>Jersey Knit</span><span>Ages 4–8</span></div>
+    </div>
+  </article>
+
+  <article class="proj">
+    <div class="proj-media rv" data-tilt data-gallery="alder" data-pnum="02"></div>
+    <div class="proj-info rv">
+      <h3 class="ptitle">Alder <em>&amp; Ash</em></h3>
+      <div class="pyear"><span class="dot"></span>2025 · Menswear / Leather</div>
+      <p class="pdesc">A quiet-luxury menswear and leather house founded on timelessness, nature and refined understatement. Each piece is crafted from 100% natural, ethically sourced leather under slow-fashion principles — aiming to become the foremost luxury leather brand to originate from India, bridging global standards with rooted Indian artistry.</p>
+      <div class="ptags"><span>Quiet Luxury</span><span>Natural Leather</span><span>Slow Fashion</span></div>
+    </div>
+  </article>
+
+  <article class="proj">
+    <div class="proj-media rv" data-tilt data-gallery="thirdsign" data-pnum="03"></div>
+    <div class="proj-info rv">
+      <h3 class="ptitle">The Third <em>Sign</em></h3>
+      <div class="pyear"><span class="dot"></span>2025 · Concept Collection</div>
+      <p class="pdesc">A concept collection inspired by Gemini — the third sign of the zodiac — translating duality and restless air-sign movement into garments. Developed through mood, concept and colour boards, mind-mapping and a defined client profile before resolving into a final range.</p>
+      <div class="ptags"><span>Zodiac</span><span>Gemini</span><span>Concept</span></div>
+    </div>
+  </article>
+
+  <article class="proj">
+    <div class="proj-media rv" data-tilt data-gallery="verforme" data-pnum="04"></div>
+    <div class="proj-info rv">
+      <h3 class="ptitle">Ver <em>Forme</em></h3>
+      <div class="pyear"><span class="dot"></span>2025 · Sustainable Semi-Formal</div>
+      <p class="pdesc">A sustainable semi-formal collection for Gen Z, blending eco-conscious values with modern aesthetics and function. Architectural silhouettes drawn from export-house tailoring meet clean lines, modular designs and zero-waste techniques — built from organic cotton, recycled polyester and upcycled fabrics in partnership with certified ethical manufacturers.</p>
+      <div class="ptags"><span>Sustainable</span><span>Zero-Waste</span><span>Modular</span></div>
+    </div>
+  </article>
+
+  <article class="proj">
+    <div class="proj-media rv" data-tilt data-gallery="nukawa" data-pnum="05"></div>
+    <div class="proj-info rv">
+      <h3 class="ptitle">NU <em>KAWA</em></h3>
+      <div class="pyear"><span class="dot"></span>2025 · Menswear / Branding</div>
+      <p class="pdesc">A menswear brand built from the ground up using the KAWA brand-identity framework — physique, personality, culture, relationship, reflection and self-image — then stress-tested through SWOT and gap analysis before arriving at the final range.</p>
+      <div class="ptags"><span>Branding</span><span>Menswear</span><span>Strategy</span></div>
+    </div>
+  </article>
+
+  <article class="proj">
+    <div class="proj-media rv" data-tilt data-gallery="wrapora" data-pnum="06"></div>
+    <div class="proj-info rv">
+      <h3 class="ptitle">Wrap<em>ora</em></h3>
+      <div class="pyear"><span class="dot"></span>2025 · Live Industry Project</div>
+      <p class="pdesc">Soft, breathable cocoon-wrap recovery wear giving comfort, warmth and gentle compression after workouts. Developed for Performax, the process began with ergonomic sketching focused on performance-driven silhouettes — designing a seamless transition from fitness to rest.</p>
+      <div class="ptags"><span>Recovery Wear</span><span>Performax</span><span>LIP</span></div>
+    </div>
+  </article>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
+  <figure class="lb-stage"><img id="lbImg" alt="" /></figure>
+  <div class="lb-meta"><span id="lbTitle"></span><span id="lbCount"></span></div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" data-screen-label="Contact">
+  <div class="contact-kicker rv">03 — Let's make something</div>
+  <div class="contact-big rv">
+    <a href="mailto:Pragnatharuni327@gmail.com">Get in <em>touch</em></a>
+  </div>
+  <div class="socials rv">
+    <a href="mailto:Pragnatharuni327@gmail.com">Pragnatharuni327@gmail.com</a>
+    <a href="tel:+918333877740">+91 83338 77740</a>
+    <a href="#">Instagram</a>
+    <a href="#">LinkedIn</a>
+  </div>
+  <footer>
+    <span>© 2026 Pragna Reddy</span>
+    <span>B.Des Fashion — Pearl Academy</span>
+    <span>Anantapur · IN</span>
+  </footer>
+</section>
+
+<script>
+(function(){
+  /* ---- custom cursor ---- */
+  const cur=document.querySelector('.cur'), dot=document.querySelector('.cur-dot');
+  let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;
+  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`;});
+  (function loop(){cx+=(mx-cx)*.18;cy+=(my-cy)*.18;cur.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,[data-tilt],image-slot,.marquee').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cur.classList.add('grow'));
+    el.addEventListener('mouseleave',()=>cur.classList.remove('grow'));
+  });
+
+  /* ---- build project galleries ---- */
+  const GAL={
+    oceanic:{title:'Oceanic Design',n:9},
+    alder:{title:'Alder & Ash',n:4},
+    thirdsign:{title:'The Third Sign',n:7},
+    verforme:{title:'Ver Forme',n:9},
+    nukawa:{title:'NU KAWA',n:4},
+    wrapora:{title:'Wrapora',n:5}
+  };
+  const lb=document.getElementById('lightbox'),
+        lbImg=document.getElementById('lbImg'),
+        lbTitle=document.getElementById('lbTitle'),
+        lbCount=document.getElementById('lbCount');
+  let lbList=[],lbIdx=0,lbName='';
+  function srcFor(key,i){return `assets/${key}/${i}.png`;}
+  function openLb(key,idx){
+    const g=GAL[key]; lbName=g.title;
+    lbList=Array.from({length:g.n},(_,i)=>srcFor(key,i+1));
+    lbIdx=idx; showLb(); lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+  }
+  function showLb(){
+    lbImg.src=lbList[lbIdx];
+    lbTitle.textContent=lbName;
+    lbCount.textContent=String(lbIdx+1).padStart(2,'0')+' / '+String(lbList.length).padStart(2,'0');
+  }
+  function closeLb(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');}
+  function navLb(d){lbIdx=(lbIdx+d+lbList.length)%lbList.length;showLb();}
+  document.getElementById('lbClose').addEventListener('click',closeLb);
+  document.getElementById('lbPrev').addEventListener('click',e=>{e.stopPropagation();navLb(-1);});
+  document.getElementById('lbNext').addEventListener('click',e=>{e.stopPropagation();navLb(1);});
+  lb.addEventListener('click',e=>{if(e.target===lb||e.target.classList.contains('lb-stage'))closeLb();});
+  addEventListener('keydown',e=>{
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')closeLb();
+    else if(e.key==='ArrowLeft')navLb(-1);
+    else if(e.key==='ArrowRight')navLb(1);
+  });
+  document.querySelectorAll('[data-gallery]').forEach(media=>{
+    const key=media.dataset.gallery, g=GAL[key], pnum=media.dataset.pnum;
+    const cover=document.createElement('button');
+    cover.className='proj-cover';
+    cover.innerHTML=`<img src="${srcFor(key,1)}" alt="${g.title} — page 1" loading="lazy" />`+
+      `<span class="pcount">${g.n} pages · view</span>`;
+    cover.addEventListener('click',()=>openLb(key,0));
+    const thumbs=document.createElement('div');
+    thumbs.className='proj-thumbs';
+    const tCount=Math.min(4,g.n-1);
+    for(let i=0;i<tCount;i++){
+      const fileIdx=i+2; // thumbnails start at image 2
+      const t=document.createElement('button');
+      t.className='proj-thumb';
+      t.innerHTML=`<img src="${srcFor(key,fileIdx)}" alt="${g.title} — page ${fileIdx}" loading="lazy" />`;
+      // last visible thumb shows "+N more" if there are extra pages beyond it
+      const shownSoFar=1+i+1; // cover + thumbs up to this one
+      if(i===tCount-1 && g.n>shownSoFar){t.classList.add('more');t.dataset.more='+'+(g.n-shownSoFar);}
+      t.addEventListener('click',()=>openLb(key,fileIdx-1));
+      thumbs.appendChild(t);
+    }
+    const pn=document.createElement('span'); pn.className='pnum'; pn.textContent=pnum;
+    media.appendChild(pn); media.appendChild(cover);
+    if(tCount>0) media.appendChild(thumbs);
+  });
+
+  /* ---- hero 3D parallax (mouse) ---- */
+  const scene=document.getElementById('heroScene');
+  const heroTitle=document.querySelector('.hero-title');
+  const heroImg=document.querySelector('.hero-img');
+  const metas=[...document.querySelectorAll('.hero-meta')];
+  let tnx=0,tny=0,cnx=0,cny=0,sy=0;
+  addEventListener('mousemove',e=>{ tnx=e.clientX/innerWidth-.5; tny=e.clientY/innerHeight-.5; });
+  function heroLoop(){
+    cnx+=(tnx-cnx)*.06; cny+=(tny-cny)*.06;
+    if(scene) scene.style.transform=`rotateX(${cny*-7}deg) rotateY(${cnx*9}deg)`;
+    if(heroTitle) heroTitle.style.transform=`translateZ(${sy*0.5}px) translateY(${sy*0.15}px) translate(${cnx*30}px,${cny*22}px)`;
+    if(heroImg) heroImg.style.transform=`translate(-50%,-50%) translateZ(-220px) translateY(${sy*-0.08}px) translate(${cnx*-90}px,${cny*-70}px)`;
+    metas.forEach(m=>{const d=parseFloat(m.dataset.depth)||0; m.style.transform=`translate(${cnx*d*-120}px,${cny*d*-90}px)`;});
+    requestAnimationFrame(heroLoop);
+  }
+  heroLoop();
+
+  /* ---- scroll: hero depth + parallax media ---- */
+  const medias=[...document.querySelectorAll('.proj-media')];
+  function onScroll(){
+    sy=scrollY;
+    medias.forEach(m=>{
+      const r=m.getBoundingClientRect();
+      const prog=(r.top+r.height/2-innerHeight/2)/innerHeight;
+      m.style.setProperty('--shift',(prog*-30)+'px');
+    });
+  }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  /* ---- 3D tilt on project media ---- */
+  medias.forEach(m=>{
+    m.addEventListener('mousemove',e=>{
+      const r=m.getBoundingClientRect();
+      const px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+      m.style.transform=`translateY(var(--shift,0px)) rotateX(${py*-5}deg) rotateY(${px*5}deg)`;
+    });
+    m.addEventListener('mouseleave',()=>{m.style.transform=`translateY(var(--shift,0px))`;});
+  });
+
+  /* ---- reveal ---- */
+  const io=new IntersectionObserver((es)=>{es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.18});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>
