@@ -6,7 +6,7 @@
 <title>Pragna Reddy — Fashion Design Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Archivo:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Archivo:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 <script src="image-slot.js"></script>
 <style>
   :root{
@@ -18,6 +18,7 @@
     --acid:#c8f24a;
     --line:rgba(236,229,216,.13);
     --serif:"Bodoni Moda",serif;
+    --display:"Libre Baskerville",serif;
     --mono:"Space Mono",monospace;
     --sans:"Archivo",sans-serif;
   }
@@ -93,14 +94,14 @@
     margin-top:clamp(128px,16vh,220px);padding-inline:clamp(40px,8vw,140px)
   }
   .hero-title .line{
-    display:block;font-family:var(--serif);font-weight:500;line-height:.84;
+    display:block;font-family:var(--display);font-weight:700;line-height:.84;
     font-size:clamp(58px,17vw,260px);letter-spacing:-.02em;
     text-transform:uppercase;mix-blend-mode:difference;color:var(--bone);
   }
   .hero-title .line.it{font-style:italic;font-weight:400}
   .hero-title .line .l{display:inline-block;transform:translateZ(0)}
   .hero-sub{
-    margin-top:clamp(132px,14vw,204px);display:flex;gap:clamp(14px,2vw,30px);justify-content:center;flex-wrap:wrap;
+    margin-top:clamp(192px,19vw,280px);display:flex;gap:clamp(14px,2vw,30px);justify-content:center;flex-wrap:wrap;
     font-family:var(--mono);font-size:clamp(10px,1.1vw,13px);letter-spacing:.22em;text-transform:uppercase;
     mix-blend-mode:difference;padding-inline:clamp(24px,6vw,96px);
   }
@@ -147,13 +148,13 @@
   .proj:nth-child(even) .proj-media{order:2}
   @media (max-width:880px){.proj{grid-template-columns:1fr;gap:30px}.proj:nth-child(even) .proj-media{order:0}}
   .proj-media{position:relative;transform-style:preserve-3d;will-change:transform}
-  .proj-cover{position:relative;display:block;width:100%;aspect-ratio:4/3;overflow:hidden;background:#000;border:1px solid var(--line);cursor:none}
+  .proj-cover{position:relative;display:block;width:100%;aspect-ratio:4/3;overflow:hidden;background:#000;border:1px solid var(--line);cursor:none;touch-action:manipulation}
   .proj-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .5s;filter:contrast(1.03)}
   .proj-media:hover .proj-cover img{transform:scale(1.04)}
   .proj-cover .pcount{position:absolute;bottom:12px;right:12px;background:rgba(13,11,10,.78);backdrop-filter:blur(6px);color:var(--bone);font-family:var(--mono);font-size:10px;letter-spacing:.14em;padding:7px 11px;display:flex;align-items:center;gap:7px}
   .proj-cover .pcount::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--acid)}
   .proj-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
-  .proj-thumb{position:relative;aspect-ratio:1/1;overflow:hidden;background:#000;border:1px solid var(--line);cursor:none}
+  .proj-thumb{position:relative;aspect-ratio:1/1;overflow:hidden;background:#000;border:1px solid var(--line);cursor:none;touch-action:manipulation}
   .proj-thumb img{width:100%;height:100%;object-fit:cover;display:block;opacity:.62;transition:opacity .4s,transform .6s}
   .proj-thumb:hover img{opacity:1;transform:scale(1.07)}
   .proj-thumb.more::after{content:attr(data-more);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(13,11,10,.72);color:var(--bone);font-family:var(--mono);font-size:13px;letter-spacing:.08em}
@@ -174,7 +175,7 @@
     .hm3{top:11%;right:18px}
     .hero-title{margin-top:165px;padding-inline:22px}
     .hero-title .line{font-size:clamp(56px,19vw,120px)}
-    .hero-sub{margin-top:156px;padding-inline:22px}
+    .hero-sub{margin-top:220px;padding-inline:22px}
     .about-copy,.proj-info{padding-left:0}
   }
 
@@ -197,11 +198,11 @@
   /* ---------- LIGHTBOX ---------- */
   .lightbox{position:fixed;inset:0;z-index:9500;background:rgba(8,7,6,.94);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
   .lightbox.open{opacity:1;visibility:visible}
-  .lb-stage{position:relative;max-width:88vw;max-height:80vh;display:flex;align-items:center;justify-content:center;margin:0}
+  .lb-stage{position:relative;max-width:88vw;max-height:80vh;display:flex;align-items:center;justify-content:center;margin:0;touch-action:pan-y}
   .lb-stage img{max-width:88vw;max-height:80vh;object-fit:contain;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.6)}
-  .lb-close{position:absolute;top:24px;right:28px;background:none;border:none;color:var(--bone);font-size:24px;cursor:none;font-family:var(--sans);opacity:.8;transition:opacity .3s,color .3s}
+  .lb-close{position:absolute;top:24px;right:28px;background:none;border:none;color:var(--bone);font-size:24px;cursor:none;font-family:var(--sans);opacity:.8;transition:opacity .3s,color .3s;touch-action:manipulation}
   .lb-close:hover{opacity:1;color:var(--acid)}
-  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid var(--line);color:var(--bone);width:54px;height:54px;border-radius:50%;font-size:26px;line-height:1;cursor:none;display:flex;align-items:center;justify-content:center;transition:background .3s,color .3s,border-color .3s}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid var(--line);color:var(--bone);width:54px;height:54px;border-radius:50%;font-size:26px;line-height:1;cursor:none;display:flex;align-items:center;justify-content:center;transition:background .3s,color .3s,border-color .3s;touch-action:manipulation}
   .lb-nav:hover{background:var(--bone);color:#0d0b0a;border-color:var(--bone)}
   .lb-prev{left:clamp(14px,3vw,40px)}
   .lb-next{right:clamp(14px,3vw,40px)}
@@ -391,8 +392,10 @@
   const lb=document.getElementById('lightbox'),
         lbImg=document.getElementById('lbImg'),
         lbTitle=document.getElementById('lbTitle'),
-        lbCount=document.getElementById('lbCount');
+        lbCount=document.getElementById('lbCount'),
+        lbStage=document.querySelector('.lb-stage');
   let lbList=[],lbIdx=0,lbName='';
+  let touchStartX=0, touchStartY=0;
   function srcFor(key,i){return `assets/${key}/${i}.png`;}
   function openLb(key,idx){
     const g=GAL[key]; lbName=g.title;
@@ -410,6 +413,18 @@
   document.getElementById('lbPrev').addEventListener('click',e=>{e.stopPropagation();navLb(-1);});
   document.getElementById('lbNext').addEventListener('click',e=>{e.stopPropagation();navLb(1);});
   lb.addEventListener('click',e=>{if(e.target===lb||e.target.classList.contains('lb-stage'))closeLb();});
+  lbStage.addEventListener('touchstart',e=>{
+    const t=e.changedTouches[0];
+    touchStartX=t.clientX;
+    touchStartY=t.clientY;
+  },{passive:true});
+  lbStage.addEventListener('touchend',e=>{
+    const t=e.changedTouches[0];
+    const dx=t.clientX-touchStartX;
+    const dy=t.clientY-touchStartY;
+    if(Math.abs(dx)<40 || Math.abs(dx)<Math.abs(dy)) return;
+    navLb(dx<0 ? 1 : -1);
+  },{passive:true});
   addEventListener('keydown',e=>{
     if(!lb.classList.contains('open'))return;
     if(e.key==='Escape')closeLb();
