@@ -85,16 +85,16 @@
   }
   .hero-img image-slot{width:100%;height:100%;display:block;filter:grayscale(.25) contrast(1.05)}
   .hero-meta{position:absolute;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-dim)}
-  .hm1{top:24%;left:clamp(24px,8vw,120px)}
-  .hm2{bottom:26%;right:9%;text-align:right}
-  .hm3{top:30%;right:11%}
+  .hm1{top:19%;left:clamp(28px,9vw,140px)}
+  .hm2{bottom:18%;right:clamp(28px,9vw,140px);text-align:right}
+  .hm3{top:18%;right:clamp(28px,9vw,140px)}
   .hero-title{
     position:relative;text-align:center;transform-style:preserve-3d;pointer-events:none;z-index:5;
-    margin-top:clamp(86px,12vh,150px);padding-inline:clamp(24px,6vw,96px)
+    margin-top:clamp(128px,16vh,220px);padding-inline:clamp(40px,8vw,140px)
   }
   .hero-title .line{
     display:block;font-family:var(--serif);font-weight:500;line-height:.84;
-    font-size:clamp(58px,17vw,260px);letter-spacing:-.02em;
+    font-size:clamp(52px,14vw,210px);letter-spacing:-.02em;
     text-transform:uppercase;mix-blend-mode:difference;color:var(--bone);
   }
   .hero-title .line.it{font-style:italic;font-weight:400}
@@ -128,6 +128,7 @@
   /* ---------- ABOUT ---------- */
   #about{padding:clamp(90px,12vw,180px) 0}
   .about-grid{display:grid;grid-template-columns:1.3fr .9fr;gap:clamp(40px,6vw,90px);align-items:start}
+  .about-copy{padding-left:clamp(18px,3vw,54px)}
   @media (max-width:880px){.about-grid{grid-template-columns:1fr}}
   .about-statement{font-family:var(--serif);font-weight:400;font-size:clamp(28px,4.4vw,62px);line-height:1.08;letter-spacing:-.01em;text-wrap:balance}
   .about-statement em{font-style:italic;color:var(--acid)}
@@ -157,6 +158,7 @@
   .proj-thumb:hover img{opacity:1;transform:scale(1.07)}
   .proj-thumb.more::after{content:attr(data-more);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(13,11,10,.72);color:var(--bone);font-family:var(--mono);font-size:13px;letter-spacing:.08em}
   .proj-media .pnum{position:absolute;top:-30px;left:-6px;font-family:var(--serif);font-style:italic;font-size:clamp(40px,6vw,90px);color:var(--bone-faint);z-index:5;pointer-events:none}
+  .proj-info{padding-left:clamp(16px,3vw,44px)}
   .proj-info .ptitle{font-family:var(--serif);font-weight:500;font-size:clamp(40px,6vw,86px);line-height:.92;letter-spacing:-.02em;text-transform:uppercase}
   .proj-info .ptitle em{font-style:italic;font-weight:400;color:var(--acid)}
   .proj-info .pyear{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--bone-dim);margin:18px 0 24px;display:flex;gap:18px;align-items:center}
@@ -168,9 +170,10 @@
   @media (max-width:640px){
     .hero-meta{font-size:10px}
     .hm1{left:18px}
-    .hm2{right:18px;bottom:22%}
+    .hm2{right:18px;bottom:15%}
     .hm3{right:18px}
-    .hero-title{margin-top:120px}
+    .hero-title{margin-top:150px;padding-inline:22px}
+    .about-copy,.proj-info{padding-left:0}
   }
 
   /* ---------- CONTACT ---------- */
@@ -227,7 +230,7 @@
     </div>
     <div class="hero-meta hm1" data-depth="0.6">B.Des Fashion<br />Pearl Academy</div>
     <div class="hero-meta hm2" data-depth="0.5">Womenswear · Kidswear<br />Menswear · Branding</div>
-    <div class="hero-meta hm3" data-depth="0.7">Based in<br />Anantapur · IN</div>
+    <div class="hero-meta hm3" data-depth="0.7">Based in<br />Bangalore · IN</div>
     <div class="hero-title" data-depth="0.12">
       <span class="line" data-word>PRAGNA</span>
       <span class="line it" data-word>Reddy</span>
@@ -251,7 +254,7 @@
 <section id="about" class="wrap" data-screen-label="About">
   <div class="shead rv"><span class="num">01</span><span class="lbl">About</span><span class="rule"></span></div>
   <div class="about-grid">
-    <div>
+    <div class="about-copy">
       <h2 class="about-statement rv">An aspiring fashion designer integrating <em>merchandising</em> strategy with product development — letting in-depth <em>research</em> guide every creative decision.</h2>
       <p class="about-body rv">I'm D. Pragna Reddy, a Fashion Design student at Pearl Academy since 2022. My practice moves across kidswear, menswear and branding — from a marine-inspired children's capsule to strategic brand-building projects — always beginning with market research and material study before a silhouette takes shape. Most recently I developed recovery wear for Performax as part of a Live Industry Project.</p>
       <div class="facts rv">
@@ -259,7 +262,7 @@
         <div class="fact"><span class="k">Focus</span><span class="v">Merchandising · Product Development · Research</span></div>
         <div class="fact"><span class="k">Experience</span><span class="v">Performax — Live Industry Project, 2025</span></div>
         <div class="fact"><span class="k">Software</span><span class="v">Procreate · Illustrator · InDesign · Photoshop</span></div>
-        <div class="fact"><span class="k">Based</span><span class="v">Anantapur, India · Available 2026</span></div>
+        <div class="fact"><span class="k">Based</span><span class="v">Bangalore, India · Available 2026</span></div>
       </div>
     </div>
     <div class="about-portrait rv">
@@ -358,7 +361,7 @@
   <footer>
     <span>© 2026 Pragna Reddy</span>
     <span>B.Des Fashion — Pearl Academy</span>
-    <span>Anantapur · IN</span>
+    <span>Bangalore · IN</span>
   </footer>
 </section>
 
