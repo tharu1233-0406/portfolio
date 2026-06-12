@@ -35,6 +35,7 @@ jobs:
           cp -R uploads _site/uploads
           cp image-slot.js _site/image-slot.js
           cp index.html _site/index.html
+          cp CNAME _site/CNAME
           cp .nojekyll _site/.nojekyll
 
       - name: Upload artifact
